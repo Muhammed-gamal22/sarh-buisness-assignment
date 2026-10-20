@@ -4,8 +4,10 @@ const globalAppError = require("./controller/errorController")
 const app = express();
 const cors = require("cors")
 const orderRouter = require("./routes/ordersRouter")
+const userRouter = require("./routes/userRouter")
 app.use(express.json());
 app.use(cors());
+app.use("/login", userRouter)
 app.use("/orders", orderRouter)
 app.use((req, res, next) => {
     next(new AppError(`can't find ${req.originalUrl} on this server`, 404));

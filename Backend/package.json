@@ -9,7 +9,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon server.js",
-        "seed": "node seed/createOrders.js"
+        "seed": "node seed/createOrders.js",
+        "seed:agent": "node seed/createAgent.js",
+        "seed:admin": "node seed/createAdmin.js"
     },
     "dependencies": {
         "@faker-js/faker": "^10.6.0",

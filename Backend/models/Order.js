@@ -67,10 +67,29 @@ const orderSchema = new Schema(
             required: true,
             min: 0,
         },
+
+        idempotencyKey: {
+            type: String,
+            default: undefined,
+        },
+
+        idempotencyHash: {
+            type: String,
+            default: undefined,
+        },
     },
     {
         timestamps: true,
         versionKey: false,
+    }
+);
+orderSchema.index(
+    { idempotencyKey: 1 },
+    {
+        unique: true,
+        partialFilterExpression: {
+            idempotencyKey: { $type: "string" },
+        },
     }
 );
 orderSchema.index({ createdAt: -1, _id: -1 });
